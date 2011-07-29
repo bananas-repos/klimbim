@@ -7,9 +7,8 @@ license: MIT-Style License (http://mifjs.net/license.txt)
 copyright: Anton Samoylov (http://mifjs.net)
 authors: Anton Samoylov (http://mifjs.net)
 requires: 
-  - Core:1.3/*
+  - Core:1.2.4/*
   - More/Fx.Scroll
-  - More/Fx.Drag
 provides: Mif.Tree
  
 ...
@@ -25,7 +24,7 @@ Mif.Tree = new Class({
 	
 	version: '1.2.6.4',
 
-	Implements: [Events, Options],
+	Implements: [new Events, new Options],
 		
 	options:{
 		types: {},
@@ -37,7 +36,7 @@ Mif.Tree = new Class({
 	
 	initialize: function(options){
 		this.setOptions(options);
-		Object.append(this, {
+		$extend(this, {
 			types: this.options.types,
 			forest: this.options.forest,
 			animateScroll: this.options.animateScroll,
@@ -63,7 +62,7 @@ Mif.Tree = new Class({
 		this.updateOpenState();
 		if(this.options.expandTo) this.initExpandTo();
 		this.DOMidPrefix='mif-tree-';
-		this.wrapper = new Element('div').addClass('mif-tree-wrapper').inject(this.container,'bottom');
+		this.wrapper = new Element('div').addClass('mif-tree-wrapper').injectInside(this.container);
 		this.events();
 		this.initScroll();
 		this.initSelection();
@@ -344,12 +343,12 @@ Mif.Tree.Node = new Class({
 	Implements: [Events],
 	
 	initialize: function(structure, options) {
-		Object.append(this, structure);
+		$extend(this, structure);
 		this.children = [];
 		this.type = options.type || this.tree.dfltType;
 		this.property = options.property || {};
 		this.data = options.data;
-		this.state = Object.append(Object.clone(this.tree.dfltState), options.state);
+		this.state = $extend($unlink(this.tree.dfltState), options.state);
 		this.$calculate();
 		this.UID = Mif.Tree.Node.UID++;
 		Mif.Tree.Nodes[this.UID] = this;
@@ -360,13 +359,13 @@ Mif.Tree.Node = new Class({
 	},
 	
 	$calculate: function(){
-		Object.append(this, Object.clone(this.tree.defaults));
-		this.type = Array.from(this.type);
+		$extend(this, $unlink(this.tree.defaults));
+		this.type = $splat(this.type);
 		this.type.each(function(type){
 			var props = this.tree.types[type];
-			if(props) Object.append(this, props);
+			if(props) $extend(this, props);
 		}, this);
-		Object.append(this, this.property);
+		$extend(this, this.property);
 		return this;
 	},
 	
@@ -419,7 +418,7 @@ Mif.Tree.Node = new Class({
 	},
 	
 	recursive: function(fn, args){
-		args=Array.from(args);
+		args=$splat(args);
 		if(fn.apply(this, args) !== false){
 			this.children.each(function(node){
 				if(node.recursive(fn, args) === false){
@@ -672,7 +671,7 @@ Mif.Tree.Draw = {
 	getHTML: function(node,html){
 		var prefix = node.tree.DOMidPrefix;
 		var checkbox;
-		if(node.state.checked != undefined){
+		if($defined(node.state.checked)){
 			if(!node.hasCheckbox) node.state.checked='nochecked';
 			checkbox = '<span class="mif-tree-checkbox mif-tree-node-'+node.state.checked+'" uid="'+node.UID+'">'+Mif.Tree.Draw.zeroSpace+'</span>';
 		}else{
@@ -714,7 +713,7 @@ Mif.Tree.Draw = {
 	},
 	
 	forestRoot: function(tree){
-		var container = new Element('div').addClass('mif-tree-children-root').inject(tree.wrapper,'bottom');
+		var container = new Element('div').addClass('mif-tree-children-root').injectInside(tree.wrapper);
 		Mif.Tree.Draw.children(tree.root, container);
 	},
 	
@@ -758,7 +757,7 @@ Mif.Tree.Draw = {
 		element = element || node.getDOM('node') || this.node(node);
 		var previous = node.getPrevious();
 		if(previous){
-			element.inject(previous.getDOM('node'),'after');
+			element.injectAfter(previous.getDOM('node'));
 			return;
 		}
 		var container;
@@ -774,7 +773,7 @@ Mif.Tree.Draw = {
 	
 };
 
-Mif.Tree.Draw.zeroSpace = Browser.ie ? '&shy;' : (Browser.chrome ? '&#8203' : '');
+Mif.Tree.Draw.zeroSpace = Browser.Engine.trident ? '&shy;' : (Browser.Engine.webkit ? '&#8203' : '');
 
 
 
@@ -796,11 +795,7 @@ Mif.Tree.implement({
 	
 	initSelection: function(){
 		this.defaults.selectClass = '';
-		this.wrapper.addEvent('mousedown', function(e) {
-			//this.attachSelect.bindWithEvent(this)
-			this.attachSelect(e)
-			}.bind(this)
-		);
+		this.wrapper.addEvent('mousedown', this.attachSelect.bindWithEvent(this));
 	},
 	
 	attachSelect: function(event){
@@ -886,13 +881,13 @@ Mif.Tree.implement({
 			name: false,
 			node: false
 		};
-		this.hoverState = Object.clone(this.defaultHoverState);
+		this.hoverState = $unlink(this.defaultHoverState);
 	},
 	
 	hover: function(){
 		var cnode = this.mouse.node;
 		var ctarget = this.mouse.target;
-		Object.each(this.hoverState, function(node, target, state){
+		$each(this.hoverState, function(node, target, state){
 			if(node == cnode && (target == 'node'||target==ctarget)) return;
 			if(node) {
 				Mif.Tree.Hover.out(node, target);
@@ -910,7 +905,7 @@ Mif.Tree.implement({
 	},
 	
 	updateHover: function(){
-		this.hoverState = Object.clone(this.defaultHoverState);
+		this.hoverState = $unlink(this.defaultHoverState);
 		this.hover();
 	}
 	
@@ -981,7 +976,7 @@ Mif.Tree.implement({
 
 	load: function(options){
 		var tree = this;
-		this.loadOptions = this.loadOptions||Function.from({});
+		this.loadOptions = this.loadOptions||$lambda({});
 		function success(json){
 			var parent = null;
 			if(tree.forest){
@@ -997,8 +992,8 @@ Mif.Tree.implement({
 			tree.fireEvent('load');
 			return tree;
 		}
-		options = Object.append(Object.append({
-			isSuccess: Function.from(true),
+		options = $extend($extend({
+			isSuccess: $lambda(true),
 			secure: true,
 			onSuccess: success,
 			method: 'get'
@@ -1027,8 +1022,8 @@ Mif.Tree.Node.implement({
 			self.tree.fireEvent('loadNode', self);
 			return self;
 		}
-		options=Object.append(Object.append(Object.append({
-			isSuccess: Function.from(true),
+		options=$extend($extend($extend({
+			isSuccess: $lambda(true),
 			secure: true,
 			onSuccess: success,
 			method: 'get'
@@ -1071,12 +1066,12 @@ Mif.Tree.KeyNav=new Class({
 	},
 	
 	attach: function(){
-		var event = Browser.ie || Browser.chrome ? 'keydown' : 'keypress';
+		var event = Browser.Engine.trident || Browser.Engine.webkit ? 'keydown' : 'keypress';
 		document.addEvent(event, this.bound.action);
 	},
 	
 	detach: function(){
-		var event = Browser.ie || Browser.chrome ? 'keydown' : 'keypress';
+		var event = Browser.Engine.trident || Browser.Engine.webkit ? 'keydown' : 'keypress';
 		document.removeEvent(event, this.bound.action);
 	},
 	
@@ -1163,14 +1158,12 @@ Mif.Tree.KeyNav=new Class({
 	
 });
 
-/*
 Event.Keys.extend({
 	'pgdown': 34,
 	'pgup': 33,
 	'home': 36,
 	'end': 35
 });
-*/
 
 
 /*
@@ -1306,7 +1299,7 @@ Mif.Tree.Node.implement({
 		function copy(structure){
 			var node = structure.node;
 			var tree = structure.tree;
-			var options = Object.clone({
+			var options = $unlink({
 				property: node.property,
 				type: node.type,
 				state: node.state,
@@ -1414,7 +1407,7 @@ provides: Mif.Tree.Drag
 
 Mif.Tree.Drag = new Class({
 	
-	Implements: [Events, Options],
+	Implements: [new Events, new Options],
 	
 	Extends: Drag,
 	
@@ -1434,7 +1427,7 @@ Mif.Tree.Drag = new Class({
 	initialize: function(tree, options){
 		tree.drag = this;
 		this.setOptions(options);
-		Object.append(this, {
+		$extend(this, {
 			tree: tree,
 			snap: this.options.snap,
 			groups: [],
@@ -1446,7 +1439,7 @@ Mif.Tree.Drag = new Class({
 		
 		this.setDroppables(this.options.droppables);
 		
-		Object.append(tree.defaults, {
+		$extend(tree.defaults, {
 			dropDenied: [],
 			dragDisabled: false
 		});
@@ -1454,7 +1447,7 @@ Mif.Tree.Drag = new Class({
 			tree.root.dropDenied.combine(['before', 'after']);
 		});
 		
-		this.pointer = new Element('div').addClass('mif-tree-pointer').inject(tree.wrapper,'bottom');
+		this.pointer = new Element('div').addClass('mif-tree-pointer').injectInside(tree.wrapper);
 		
 		this.current = Mif.Tree.Drag.current;
 		this.target = Mif.Tree.Drag.target;
@@ -1463,7 +1456,7 @@ Mif.Tree.Drag = new Class({
 		this.element = [this.current, this.target, this.where];
 		this.document = tree.wrapper.getDocument();
 		
-		this.selection = (Browser.ie) ? 'selectstart' : 'mousedown';
+		this.selection = (Browser.Engine.trident) ? 'selectstart' : 'mousedown';
 		
 		this.bound = {
 			start: this.start.bind(this),
@@ -1471,7 +1464,7 @@ Mif.Tree.Drag = new Class({
 			drag: this.drag.bind(this),
 			stop: this.stop.bind(this),
 			cancel: this.cancel.bind(this),
-			eventStop: Function.from(false),
+			eventStop: $lambda(false),
 			leave: this.leave.bind(this),
 			enter: this.enter.bind(this),
 			keydown: this.keydown.bind(this)
@@ -1511,7 +1504,7 @@ Mif.Tree.Drag = new Class({
 	},
 	
 	addToGroups: function(groups){
-		groups = Array.from(groups);
+		groups = $splat(groups);
 		this.groups.combine(groups);
 		groups.each(function(group){
 			Mif.Tree.Drag.groups[group]=(Mif.Tree.Drag.groups[group]||[]).include(this);
@@ -1519,7 +1512,7 @@ Mif.Tree.Drag = new Class({
 	},
 	
 	setDroppables: function(droppables){
-		this.droppables.combine(Array.from(droppables));
+		this.droppables.combine($splat(droppables));
 		this.groups.each(function(group){
 			this.droppables.combine(Mif.Tree.Drag.groups[group]);
 		}, this);
@@ -1562,7 +1555,7 @@ Mif.Tree.Drag = new Class({
 	onleave: function(){
 		this.tree.unselect();
 		this.clean();
-		clearInterval(this.scrolling);
+		$clear(this.scrolling);
 		this.scrolling = null;
 		this.target = false;
 	},
@@ -1628,7 +1621,7 @@ Mif.Tree.Drag = new Class({
 			}.periodical(this.options.scrollDelay, this, [sign]);
 		}
 		if(!sign){
-			clearInterval(this.scrolling);
+			$clear(this.scrolling);
 			this.scrolling = null;
 		}
 	},
@@ -1640,7 +1633,7 @@ Mif.Tree.Drag = new Class({
 
 		var target = this.tree.mouse.target;
 		if(!target) return;
-		this.current = Array.from(this.options.startPlace).contains(target) ? this.tree.mouse.node : false;
+		this.current = $splat(this.options.startPlace).contains(target) ? this.tree.mouse.node : false;
 		if(!this.current || this.current.dragDisabled) {
 			return;
 		}
@@ -1698,7 +1691,7 @@ Mif.Tree.Drag = new Class({
 	clean: function(){
 		this.pointer.style.width = 0;
 		if(this.openTimer){
-			clearInterval(this.openTimer);
+			$clear(this.openTimer);
 			this.openTimer = false;
 			this.wrapper.style.cursor = 'inherit';
 			this.wrapper = false;
@@ -1709,8 +1702,8 @@ Mif.Tree.Drag = new Class({
 		var wrapper = this.current.getDOM('wrapper');
 		var ghost = new Element('span').addClass('mif-tree-ghost');
 		ghost.adopt(Mif.Tree.Draw.node(this.current).getFirst())
-		.inject(document.body,'bottom').addClass('mif-tree-ghost-notAllowed').setStyle('position', 'absolute');
-		new Element('span').set('html',Mif.Tree.Draw.zeroSpace).inject(ghost,'top');
+		.injectInside(document.body).addClass('mif-tree-ghost-notAllowed').setStyle('position', 'absolute');
+		new Element('span').set('html',Mif.Tree.Draw.zeroSpace).injectTop(ghost);
 		ghost.getLast().getFirst().className = '';
 		Mif.Tree.Drag.ghost = ghost;
 	},
@@ -1842,7 +1835,7 @@ Mif.Tree.Drag = new Class({
 	
 	onstop: function(){
 		this.clean();
-		clearInterval(this.scrolling);
+		$clear(this.scrolling);
 	}
 });
 
@@ -2028,7 +2021,7 @@ Mif.Tree.Rename={
 			left: -2000,
 			top:0,
 			padding: 0
-		}).inject(document.body,'bottom');
+		}).injectInside(document.body);
 		input.addEvent('keydown',function(event){
 			(function(){
 			input.setStyle('width',Math.max(20, span.set('html', input.value.replace(/\s/g,'&nbsp;')).offsetWidth+15));
