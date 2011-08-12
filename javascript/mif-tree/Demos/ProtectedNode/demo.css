@@ -1,13 +1,10 @@
 #tree_container{
 height:200px;
-width:300px;
+width:150px;
 position:relative;
-border:solid 1px #b7b7b7;
+border:solid 1px #9f9f9f;
 }
 
-.green{
-color:green;
-}
 
 /*@global*/
 
@@ -161,6 +158,7 @@ background-image:url('../assets/images/bin_open_icon.gif');
 .mif-tree-bin-close-icon{
 background-image:url('../assets/images/bin_close_icon.gif');
 }
+
 
 
 

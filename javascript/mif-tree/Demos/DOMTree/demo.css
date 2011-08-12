@@ -1,13 +1,54 @@
 #tree_container{
-height:200px;
-width:300px;
+height:300px;
+width:200px;
 position:relative;
-border:solid 1px #b7b7b7;
+border:solid 1px #c7c7c7;
 }
 
-.green{
-color:green;
+.mif-tree-wrapper{
+font-family:verdana;
+font-size:11px;
 }
+
+.mif-tree-name{
+margin-left:0;
+padding-left:4px;
+}
+
+.dom-array{
+color:#6f6893;
+font-weight:bold;
+}
+
+.dom-object{
+color:#000;
+font-weight:bold;
+}
+
+.dom-string{
+color:#f35454;
+font-weight:bold;
+}
+
+.dom-number{
+color:#23268d;
+font-weight:bold;
+}
+
+.dom-function{
+color:#409d4b;
+font-weight:bold;
+}
+
+.mif-tree-empty-icon{
+padding-right:0;
+}
+
+.mif-tree-hover-gadjet .mif-tree-name, .mif-tree-hover-name .mif-tree-name, .mif-tree-hover-icon .mif-tree-name{
+color:blue;
+text-decoration:underline;
+}
+
 
 /*@global*/
 
@@ -57,12 +98,11 @@ cursor:inherit;
 }
 
 .mif-tree-children{
-padding-left:18px;
-width:18px;
+padding-left: 18px;
+width:auto;
 }
 
 .mif-tree-node{
-width:18px;
 background:url('../assets/images/line.gif') repeat-y 8px 0px;
 }
 
@@ -92,7 +132,7 @@ background:url('../assets/images/horizontal-line.gif') no-repeat 9px center;
 /*@gadjets*/
 
 .mif-tree-gadjet{
-background-image:url('../assets/images/gadjets.gif');
+background-image:url('../assets/images/twistyGadjets.gif');
 padding-right: 16px;
 z-index:1;
 overflow:hidden;
@@ -112,7 +152,7 @@ background-position: 0px 50%;
 background-position: -18px 50%;
 }
 
-
+/*
 .mif-tree-gadjet-hover .mif-tree-gadjet-minus{
 background-position: -54px 50%;
 }
@@ -121,6 +161,7 @@ background-position: -54px 50%;
 background-position: -72px 50%;
 }
 
+*/
 
 
 /*.mif-tree-gadjet-hover{
@@ -132,36 +173,8 @@ background-image:url('../assets/images/gadjets-hover.gif');
 
 /*@icons*/
 .mif-tree-icon{
-padding-right:18px;
-background-position:0 50%;
-background-repeat:no-repeat;
-cursor:inherit;
-}
 
-.mif-tree-open-icon{
-background-image:url('../assets/images/openicon.gif')
 }
-
-.mif-tree-close-icon{
-background-image:url('../assets/images/closeicon.gif')
-}
-
-.mif-tree-loader-open-icon,.mif-tree-loader-close-icon{
-background-image:url('../assets/images/mootree_loader.gif');
-}
-
-.mif-tree-book-icon{
-background-image:url('../assets/images/book_icon.gif');
-}
-
-.mif-tree-bin-open-icon{
-background-image:url('../assets/images/bin_open_icon.gif');
-}
-
-.mif-tree-bin-close-icon{
-background-image:url('../assets/images/bin_close_icon.gif');
-}
-
 
 
 /*@selection*/
@@ -172,8 +185,12 @@ color:#fff;
 text-transform:italic;
 }
 
-.mif-tree-hover-node .mif-tree-name{
-text-decoration:underline
+.mif-tree-highlighter{
+height:18px;
+overflow:hidden;
+width:100%;
+background:#b64553;
+position:absolute;
 }
 
 
@@ -193,11 +210,6 @@ background-color:#292fef;
 background-color:#fff;
 border:solid 2px #e8e8f7;
 padding-left:2px;
-}
-
-.mif-tree-ghost span{
-padding-top:2px;
-padding-bottom:2px;
 }
 
 .mif-tree-ghost .mif-tree-node-wrapper{

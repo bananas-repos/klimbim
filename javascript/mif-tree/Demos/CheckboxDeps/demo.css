@@ -1,13 +1,21 @@
+
 #tree_container{
-height:200px;
-width:300px;
+height:400px;
+width:250px;
 position:relative;
-border:solid 1px #b7b7b7;
+float:left;
+border:solid 1px gray;
 }
 
-.green{
-color:green;
+#info{
+float:left;
+width:250px;
+border:solid 1px gray;
+height:400px;
+overflow:auto;
+margin-left:5px;
 }
+
 
 /*@global*/
 
@@ -63,6 +71,7 @@ width:18px;
 
 .mif-tree-node{
 width:18px;
+position:static;
 background:url('../assets/images/line.gif') repeat-y 8px 0px;
 }
 
@@ -146,6 +155,7 @@ background-image:url('../assets/images/openicon.gif')
 background-image:url('../assets/images/closeicon.gif')
 }
 
+
 .mif-tree-loader-open-icon,.mif-tree-loader-close-icon{
 background-image:url('../assets/images/mootree_loader.gif');
 }
@@ -164,6 +174,8 @@ background-image:url('../assets/images/bin_close_icon.gif');
 
 
 
+
+
 /*@selection*/
 
 .mif-tree-node-selected .mif-tree-name{
@@ -172,8 +184,12 @@ color:#fff;
 text-transform:italic;
 }
 
-.mif-tree-hover-node .mif-tree-name{
-text-decoration:underline
+.mif-tree-highlighter{
+height:18px;
+overflow:hidden;
+width:100%;
+background:#b64553;
+position:absolute;
 }
 
 
@@ -193,11 +209,6 @@ background-color:#292fef;
 background-color:#fff;
 border:solid 2px #e8e8f7;
 padding-left:2px;
-}
-
-.mif-tree-ghost span{
-padding-top:2px;
-padding-bottom:2px;
 }
 
 .mif-tree-ghost .mif-tree-node-wrapper{
@@ -248,25 +259,37 @@ background-color:#99c8fb;
 /*@checkbox*/
 .mif-tree-checkbox{
 padding-left:18px;
+background-image:url('../assets/images/checkboxes.gif');
+background-repeat: no-repeat;
 }
 
-.mif-tree-node-checked, .mif-tree-node-checked .mif-tree-checkbox{
-background:url('../assets/images/checked.gif') center 2px no-repeat;
+.mif-tree-node-checked{
+background-position:0px center;
 }
 
-.mif-tree-node-unchecked, .mif-tree-node-unchecked .mif-tree-checkbox{
-background:url('../assets/images/unchecked.gif') center 2px no-repeat;
+.mif-tree-node-unchecked{
+background-position:-18px center;
 }
 
-.mif-tree-node-checked-selected{
-background:url('../assets/images/checked_selected.gif') center 2px no-repeat;
+.mif-tree-node-nochecked{
+background-position:-108px center;
 }
 
-.mif-tree-node-unchecked-selected{
-background:url('../assets/images/unchecked_selected.gif') center 2px no-repeat;
+.mif-tree-hover-checkbox .mif-tree-node-checked{
+background-position:-36px center;
 }
 
+.mif-tree-hover-checkbox .mif-tree-node-unchecked{
+background-position:-54px center;
+}
 
+.mif-tree-node-partially{
+background-position:-72px center;
+}
+
+.mif-tree-hover-checkbox .mif-tree-node-partially{
+background-position:-90px center;
+}
 
 /*@rename*/
 .mif-tree-rename{

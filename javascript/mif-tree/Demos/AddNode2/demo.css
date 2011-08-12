@@ -1,13 +1,10 @@
 #tree_container{
 height:200px;
-width:300px;
 position:relative;
-border:solid 1px #b7b7b7;
+width:200px;
+border:solid 1px #b2b2b2;
 }
 
-.green{
-color:green;
-}
 
 /*@global*/
 
@@ -20,7 +17,7 @@ padding:0;
 overflow:auto;
 font-family:sans-serif;
 font-size:11px;
-line-height:18px;/******Tree node height******/
+line-height:20px;/******Tree node height******/
 white-space:nowrap;
 cursor:default;
 }
@@ -146,6 +143,7 @@ background-image:url('../assets/images/openicon.gif')
 background-image:url('../assets/images/closeicon.gif')
 }
 
+
 .mif-tree-loader-open-icon,.mif-tree-loader-close-icon{
 background-image:url('../assets/images/mootree_loader.gif');
 }
@@ -172,8 +170,12 @@ color:#fff;
 text-transform:italic;
 }
 
-.mif-tree-hover-node .mif-tree-name{
-text-decoration:underline
+.mif-tree-highlighter{
+height:18px;
+overflow:hidden;
+width:100%;
+background:#b64553;
+position:absolute;
 }
 
 
@@ -193,11 +195,6 @@ background-color:#292fef;
 background-color:#fff;
 border:solid 2px #e8e8f7;
 padding-left:2px;
-}
-
-.mif-tree-ghost span{
-padding-top:2px;
-padding-bottom:2px;
 }
 
 .mif-tree-ghost .mif-tree-node-wrapper{

@@ -1,13 +1,59 @@
-#tree_container{
-height:200px;
-width:300px;
-position:relative;
-border:solid 1px #b7b7b7;
+.warning{
+background-color:#ad4b3a;
+color:#e0e93f;
+margin:20px;
+font-weight:bold;
+font-size:16px;
+padding-left:2em;
 }
 
-.green{
-color:green;
+
+#tree_container{
+height:300px;
+margin:0 20px;
+position:relative;
+border:solid 1px #c7c7c7;
 }
+
+.mif-tree-wrapper{
+font-family:verdana;
+font-size:11px;
+}
+
+.mif-tree-name{
+margin-left:0;
+padding-left:4px;
+}
+
+.tag-close{
+
+}
+
+.attr-value{
+color:#e9441b;
+}
+
+.value{
+color:#000;
+}
+
+.mif-tree-wrapper span.tag{
+cursor:pointer;
+}
+
+.mif-tree-wrapper .mif-tree-gadjet{
+cursor:default;
+}
+
+.mif-tree-empty-icon{
+padding-right:0;
+}
+
+.mif-tree-hover-gadjet .mif-tree-name, .mif-tree-hover-name .mif-tree-name, .mif-tree-hover-icon .mif-tree-name{
+color:blue;
+
+}
+
 
 /*@global*/
 
@@ -18,7 +64,8 @@ height:100%;
 margin:0;
 padding:0;
 overflow:auto;
-font-family:sans-serif;
+font-family:Tahoma;
+color:#3147e6;
 font-size:11px;
 line-height:18px;/******Tree node height******/
 white-space:nowrap;
@@ -53,27 +100,26 @@ outline:0;
 .mif-tree-wrapper span{
 padding-bottom:2px;
 padding-top:2px;
-cursor:inherit;
+cursor:text;
 }
 
 .mif-tree-children{
-padding-left:18px;
-width:18px;
+padding-left: 25px;
+width:auto;
 }
 
 .mif-tree-node{
-width:18px;
-background:url('../assets/images/line.gif') repeat-y 8px 0px;
+/*background:url('../assets/images/line.gif') repeat-y 8px 0px;*/
 }
 
 .mif-tree-node-last{
-background:url('../assets/images/line.gif') no-repeat 8px 0px;
+/*background:url('../assets/images/line.gif') no-repeat 8px 0px;*/
 }
 
 .mif-tree-name{
 cursor: default;
 overflow:hidden;
-margin-left:4px;
+margin-left:0px;
 }
 
 .mif-tree-name a{
@@ -86,13 +132,13 @@ color:blue;
 
 
 .mif-tree-node-wrapper{
-background:url('../assets/images/horizontal-line.gif') no-repeat 9px center;
+/*background:url('../assets/images/horizontal-line.gif') no-repeat 9px center;*/
 }
 
 /*@gadjets*/
 
 .mif-tree-gadjet{
-background-image:url('../assets/images/gadjets.gif');
+background-image:url('../assets/images/twistyGadjets.gif');
 padding-right: 16px;
 z-index:1;
 overflow:hidden;
@@ -112,7 +158,7 @@ background-position: 0px 50%;
 background-position: -18px 50%;
 }
 
-
+/*
 .mif-tree-gadjet-hover .mif-tree-gadjet-minus{
 background-position: -54px 50%;
 }
@@ -121,6 +167,7 @@ background-position: -54px 50%;
 background-position: -72px 50%;
 }
 
+*/
 
 
 /*.mif-tree-gadjet-hover{
@@ -132,36 +179,8 @@ background-image:url('../assets/images/gadjets-hover.gif');
 
 /*@icons*/
 .mif-tree-icon{
-padding-right:18px;
-background-position:0 50%;
-background-repeat:no-repeat;
-cursor:inherit;
-}
 
-.mif-tree-open-icon{
-background-image:url('../assets/images/openicon.gif')
 }
-
-.mif-tree-close-icon{
-background-image:url('../assets/images/closeicon.gif')
-}
-
-.mif-tree-loader-open-icon,.mif-tree-loader-close-icon{
-background-image:url('../assets/images/mootree_loader.gif');
-}
-
-.mif-tree-book-icon{
-background-image:url('../assets/images/book_icon.gif');
-}
-
-.mif-tree-bin-open-icon{
-background-image:url('../assets/images/bin_open_icon.gif');
-}
-
-.mif-tree-bin-close-icon{
-background-image:url('../assets/images/bin_close_icon.gif');
-}
-
 
 
 /*@selection*/
@@ -172,12 +191,9 @@ color:#fff;
 text-transform:italic;
 }
 
-.mif-tree-hover-node .mif-tree-name{
-text-decoration:underline
+.mif-tree-node-selected .attr-value, .mif-tree-node-selected .value{
+color:#fff;
 }
-
-
-
 /*@d'n'd*/
 .mif-tree-pointer{
 height:1px;
@@ -193,11 +209,6 @@ background-color:#292fef;
 background-color:#fff;
 border:solid 2px #e8e8f7;
 padding-left:2px;
-}
-
-.mif-tree-ghost span{
-padding-top:2px;
-padding-bottom:2px;
 }
 
 .mif-tree-ghost .mif-tree-node-wrapper{

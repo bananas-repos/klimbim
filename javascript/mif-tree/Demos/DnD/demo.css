@@ -1,13 +1,39 @@
-#tree_container{
-height:200px;
-width:300px;
+.container{
+height:250px;
+width:200px;
 position:relative;
-border:solid 1px #b7b7b7;
+border:solid 1px #cecece;
+float:left;
+margin-left:10px;
 }
 
-.green{
-color:green;
+#drop_container{
+position:relative;
+width:200px;
+height:230px;
+background:#faf9c7;
+float:left;
+margin-left:20px;
+padding:10px;
+overflow:auto;
 }
+
+#drop_container ul{
+margin-left:20px;
+}
+
+#informer{
+clear:both;
+}
+
+#informer p{
+font-weight:bold;
+}
+
+#informer span{
+font-weight:normal;
+}
+
 
 /*@global*/
 
@@ -53,7 +79,7 @@ outline:0;
 .mif-tree-wrapper span{
 padding-bottom:2px;
 padding-top:2px;
-cursor:inherit;
+/*cursor:inherit;*/
 }
 
 .mif-tree-children{
@@ -64,6 +90,7 @@ width:18px;
 .mif-tree-node{
 width:18px;
 background:url('../assets/images/line.gif') repeat-y 8px 0px;
+cursor:inherit;
 }
 
 .mif-tree-node-last{
@@ -71,9 +98,9 @@ background:url('../assets/images/line.gif') no-repeat 8px 0px;
 }
 
 .mif-tree-name{
-cursor: default;
 overflow:hidden;
 margin-left:4px;
+cursor:inherit;
 }
 
 .mif-tree-name a{
@@ -85,14 +112,15 @@ color:blue;
 }
 
 
-.mif-tree-node-wrapper{
+.mif-tree-wrapper .mif-tree-node-wrapper{
 background:url('../assets/images/horizontal-line.gif') no-repeat 9px center;
+cursor:inherit;
 }
 
 /*@gadjets*/
 
 .mif-tree-gadjet{
-background-image:url('../assets/images/gadjets.gif');
+background-image:url('../assets/images/twistyGadjets.gif');
 padding-right: 16px;
 z-index:1;
 overflow:hidden;
@@ -113,22 +141,6 @@ background-position: -18px 50%;
 }
 
 
-.mif-tree-gadjet-hover .mif-tree-gadjet-minus{
-background-position: -54px 50%;
-}
-
-.mif-tree-gadjet-hover .mif-tree-gadjet-plus{
-background-position: -72px 50%;
-}
-
-
-
-/*.mif-tree-gadjet-hover{
-background-image:url('../assets/images/gadjets-hover.gif');
-}*/
-
-
-
 
 /*@icons*/
 .mif-tree-icon{
@@ -145,6 +157,7 @@ background-image:url('../assets/images/openicon.gif')
 .mif-tree-close-icon{
 background-image:url('../assets/images/closeicon.gif')
 }
+
 
 .mif-tree-loader-open-icon,.mif-tree-loader-close-icon{
 background-image:url('../assets/images/mootree_loader.gif');
@@ -175,8 +188,6 @@ text-transform:italic;
 .mif-tree-hover-node .mif-tree-name{
 text-decoration:underline
 }
-
-
 
 /*@d'n'd*/
 .mif-tree-pointer{

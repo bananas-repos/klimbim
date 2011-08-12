@@ -1,13 +1,10 @@
 #tree_container{
 height:200px;
-width:300px;
+width:150px;
 position:relative;
-border:solid 1px #b7b7b7;
+border:solid 1px gray;
 }
 
-.green{
-color:green;
-}
 
 /*@global*/
 
@@ -112,7 +109,6 @@ background-position: 0px 50%;
 background-position: -18px 50%;
 }
 
-
 .mif-tree-gadjet-hover .mif-tree-gadjet-minus{
 background-position: -54px 50%;
 }
@@ -161,6 +157,8 @@ background-image:url('../assets/images/bin_open_icon.gif');
 .mif-tree-bin-close-icon{
 background-image:url('../assets/images/bin_close_icon.gif');
 }
+
+
 
 
 
