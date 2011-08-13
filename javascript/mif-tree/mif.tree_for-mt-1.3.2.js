@@ -1001,8 +1001,16 @@ Mif.Tree.implement({
 			isSuccess: Function.from(true),
 			secure: true,
 			onSuccess: success,
+			onError: errorFunc,
 			method: 'get'
 		}, this.loadOptions()), options);
+	
+		function errorFunc(text,error) {
+			alert(text);
+			alert(error);
+			return false;
+		}
+
 		if(options.json) return success(options.json);
 		new Request.JSON(options).send();
 		return this;
@@ -1031,8 +1039,16 @@ Mif.Tree.Node.implement({
 			isSuccess: Function.from(true),
 			secure: true,
 			onSuccess: success,
+			onError: errorFunc,
 			method: 'get'
 		}, this.tree.loadOptions(this)), this.loadOptions), options);
+
+		function errorFunc(text,error) {
+			alert(text);
+			alert(error);
+			return false;
+		}		
+
 		if(options.json) return success(options.json);
 		new Request.JSON(options).send();
 		return this;
