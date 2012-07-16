@@ -6,7 +6,7 @@ Das sollte uns aber trotzdem nicht davon abhalten, auch mal was ohne JavaScript 
 
 Man erstellen einen Link dann wie folgt:
 
-1
+
 <a href="javscript:void(0);">asd Tooltip</a>
 Das javscript verhindert das event sollte man auf den Link draufklicken.
 
