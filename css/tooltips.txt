@@ -12,6 +12,7 @@ Das javscript verhindert das event sollte man auf den Link draufklicken.
 
 Danach nur noch folgende CSS Definitionen und schon hat man seinen Tooltip.
 
+```css
 a {
 	z-index:10;
 }
@@ -35,3 +36,4 @@ a:hover span{
 	padding:1px 5px;
 	z-index:10;
 }
+```
