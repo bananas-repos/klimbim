@@ -2,8 +2,7 @@
 
 # 2012 by Johannes 'Banana' Keßler
 
-# this file can be used as a "eraly morning check"
-# only productive installations yet
+# this file can be used as a "early morning check"
 
 use warnings;
 use strict;
@@ -27,8 +26,8 @@ print "+" .('-' x 94) . "+\n";
 foreach my $url(@urlsToCheck) {
 	# ordinary response check
 	check_url($url);
-	# special check which retunrs the output.
-	# eg if you want to check the installed version. You could query the version info and display it
+	# special check which retuns the output.
+	# eg. if you want to check the installed version. You could query the version info and display it
 	check_url($url.'/_path/to/special/file/',"1");
 }
 
