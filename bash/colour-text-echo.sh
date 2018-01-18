@@ -7,7 +7,7 @@
 # COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0
 # along with this program.  If not, see http://www.sun.com/cddl/cddl.html
 
-# 2013 https://github.com/jumpin-banana
+# 2013 http://www.bananas-playground.net
 
 # this function prints the given string in the given colour in a bash shell
 # either include this function directly into your script or source it as an

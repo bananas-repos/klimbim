@@ -1,5 +1,5 @@
 #!/bin/bash
-# 
+#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the COMMON DEVELOPMENT AND DISTRIBUTION LICENSE
 #
@@ -7,7 +7,7 @@
 # COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0
 # along with this program.  If not, see http://www.sun.com/cddl/cddl.html
 
-# 2013 https://github.com/jumpin-banana
+# 2013 http://www.bananas-playground.net
 
 #
 # fetch the timeline from given twitter user
