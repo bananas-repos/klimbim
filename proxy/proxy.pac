@@ -1,3 +1,5 @@
+// This is an example proxy.pac file which can be used as the proxy configuration by URL
+//
 // file syntax is javascript
 
 // this is the return value if we do not use the proxy
