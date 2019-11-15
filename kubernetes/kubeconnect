@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# get a shell in a pod
+# kubeconect podname context
+#
+# podname = the string to find
+# context = the context to use for kubectl
+#
+# uses the default container and /bin/bash as a shell
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the COMMON DEVELOPMENT AND DISTRIBUTION LICENSE
+#
+# You should have received a copy of the
+# COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0
+# along with this program.  If not, see http://www.sun.com/cddl/cddl.html
+
+# 2019 http://www.bananas-playground.net
+
+if [ $# -lt 2 ]; then
+	echo "You need to provide pod name and context";
+	echo "kubeconnect pod-name context";
+	exit 126;
+fi;
+
+PODNAME="$1"
+CONTEXT="$2"
+
+if kubectl config use-context "$CONTEXT" &> /dev/null
+then
+	echo "Using context: "`kubectl config current-context`;
+	AMOUNT=$(kubectl get pods | grep $PODNAME | awk '{print $1}' | wc -l);
+	if [[ $AMOUNT -eq 1 ]];
+	then
+		REALPODNAME=$(kubectl get pods | grep $PODNAME | awk '{print $1}');
+		echo "Pod found: "$REALPODNAME;
+		kubectl exec -it $REALPODNAME -- /bin/bash
+	else
+		echo "ERROR: No such pod found. '$PODNAME'";
+	fi
+else
+	echo "Could not set context: '$CONTEXT'"
+fi
+

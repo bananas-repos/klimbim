@@ -1,12 +1,10 @@
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the COMMON DEVELOPMENT AND DISTRIBUTION LICENSE
-#
+
 # You should have received a copy of the
 # COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0
 # along with this program.  If not, see http://www.sun.com/cddl/cddl.html
 
-# 2011-2019 http://www.bananas-playground.net
+# 2019 http://www.bananas-playground.net
 
-A bag full of things
-
-Use the file browse function to see what is inside.
+Stuff while using kubernetes and some of its cli. Nothing special.
