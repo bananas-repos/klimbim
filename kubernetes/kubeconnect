@@ -9,6 +9,7 @@
 # context = the context to use for kubectl
 #
 # uses the default container and /bin/bash as a shell
+# needs kubectl to be installed
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the COMMON DEVELOPMENT AND DISTRIBUTION LICENSE
@@ -22,7 +23,7 @@
 if [ $# -lt 2 ]; then
 	echo "You need to provide pod name and context";
 	echo "kubeconnect pod-name context";
-	exit 126;
+	exit 2;
 fi;
 
 PODNAME="$1"
@@ -39,8 +40,10 @@ then
 		kubectl exec -it $REALPODNAME -- /bin/bash
 	else
 		echo "ERROR: No such pod found. '$PODNAME'";
+		exit 1;
 	fi
 else
 	echo "Could not set context: '$CONTEXT'"
+	exit 1;
 fi
-
+exit 0
