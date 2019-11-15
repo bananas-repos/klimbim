@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# version 1.0
+
 # get a shell in a pod
 # kubeconect podname context
 #
