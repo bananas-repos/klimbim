@@ -5,8 +5,9 @@
 # original code from:
 # https://unix.stackexchange.com/questions/48456/xfce-send-window-to-other-monitor-on-keystroke/322904#322904
 
-# run script with -r or -l as a keyboard shurtcut and the current active window will be move.
+# run script with -r or -l as a keyboard shurtcut and the current active window will be moved.
 # works with horizontal monitors. Needs to be improved to work with vertical ones.
+# change MONITOR_COUNT below to your needs.
 
 # needs the following applications
 # xdpyinfo
@@ -22,7 +23,11 @@
 # COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0
 # along with this program.  If not, see http://www.sun.com/cddl/cddl.html
 
-# 2018 http://www.bananas-playground.net
+# 2018-2019 http://www.bananas-playground.net
+
+
+# set this variable to your monitor count
+MONITOR_COUNT=3;
 
 screen_width=$(xdpyinfo | awk -F" |x" '/dimensions:/ { print $7 }')
 screen_height=$(xdpyinfo | awk -F" |x" '/dimensions:/ { print $8 }')
@@ -30,9 +35,9 @@ window_id=$(xdotool getactivewindow)
 
 case $1 in
     -l )
-        display_width=$((screen_width / 3 * 2)) ;;
+        display_width=$((screen_width / MONITOR_COUNT * 2)) ;;
     -r )
-        display_width=$((screen_width / 3)) ;;
+        display_width=$((screen_width / MONITOR_COUNT)) ;;
 esac
 
 # Remember if it was maximized.
