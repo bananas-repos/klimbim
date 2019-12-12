@@ -1,5 +1,5 @@
 #!/bin/bash
-#
+
 # Move the current window to the next monitor.
 #
 # original code from:
@@ -23,7 +23,7 @@
 # COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0
 # along with this program.  If not, see http://www.sun.com/cddl/cddl.html
 
-# 2018-2019 http://www.bananas-playground.net
+# 2018-2019 https://www.bananas-playground.net
 
 
 # set this variable to your monitor count
