@@ -17,16 +17,16 @@ use File::Temp 'tempdir';
 my @timesToCheck = (1..10);
 # the urls to be called
 my @urlsToCheck = (
-	'https://www.some.tld'
+	'https://www.some.tld',
 	'https://www.some.tld/with/path',
 	'https://www.some-other.tld'
 );
 
 my $mech = WWW::Mechanize::Chrome->new(
-	launch_exe => '/usr/bin/google-chrome-stable', # path to your chome 
+	launch_exe => '/usr/bin/google-chrome-stable', # path to your chome
 	incognito => 1,
 	data_directory => tempdir(CLEANUP => 1 ),
-	launch_arg => [ 
+	launch_arg => [
 		#"--headless", # headless or not
 		"--disk-cache-dir=/dev/null",
 		"--aggressive-cache-discard",
@@ -41,7 +41,7 @@ my $mech = WWW::Mechanize::Chrome->new(
 $mech->add_header(
 	'user-agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/999.99 (KHTML, like Gecko) Chrome/79.0.3945.131 Safari/537.36',
 	'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-	'Accept-Charset' => 'iso-8859-1,*,utf-8', 
+	'Accept-Charset' => 'iso-8859-1,*,utf-8',
 	'Accept-Language' => 'en-US',
 	'accept-encoding' => 'gzip, deflate, br',
 	'Cache-Control' => 'no-cache',
@@ -59,7 +59,7 @@ foreach my $url(@urlsToCheck) {
 			$time = ($time - $start);
 
 			my $out = sprintf "%s %.4f sec \n", $displayUrl, $time;
-			print $out;	
+			print $out;
 		}
 		$mech->sleep( 2 );
 	}
