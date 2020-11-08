@@ -9,7 +9,7 @@
 :: Use this script for windows to toggle your network connection
 :: Replace Ethernet with the name of your network connection and execute
 :: this with admin priviliges
-
+::
 @echo off
 cls
 ping google.com
