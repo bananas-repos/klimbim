@@ -11,7 +11,7 @@ set -euo pipefail
 # 2023 http://www.bananas-playground.net
 
 # More information and resources can be found here
-# 
+# https://www.bananas-playground.net/2023/05/db-delay-notify/
 
 # station eva#
 STATIONID=""
