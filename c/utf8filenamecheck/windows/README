@@ -1,0 +1,35 @@
+# Klimbim Software collection, A bag full of things
+# Copyright (C) 2011-2023 Johannes 'Banana' Keßler
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# utf8filenamecheck
+Small windows C tool to check if paths in a folder are utf-8 formatted
+
+# Uses 
+- https://www.argtable.org : Argument parsing (argtable-3.1.5-amalgamation)
+- https://github.com/adamretter/utf8-validator-c : Check if a string is utf-8
+
+# WARNING
+This is a very simple, with limited experience written, windows C program.
+Use at own risk and feel free to improve.
+
+# How to build
+- gcc from https://jmeubank.github.io/tdm-gcc/ (build with tdm64-gcc-9.2.0)
+Run the makefile.bat in a cmd terminal. 
+Resulting utf8filenamecheck.exe is in bin/ directory.
+
+# How to use
+Run in a terminal `utf8filenamecheck.exe c:\some\dir`
+Run utf8filenamecheck.exe --help to see its options.
