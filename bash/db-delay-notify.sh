@@ -1,15 +1,23 @@
 #!/bin/bash
 set -euo pipefail
 
+# Klimbim Software collection, A bag full of things
+# Copyright (C) 2011-2023 Johannes 'Banana' Keßler
+#
 # This program is free software: you can redistribute it and/or modify
-# it under the terms of the COMMON DEVELOPMENT AND DISTRIBUTION LICENSE
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 #
-# You should have received a copy of the
-# COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0
-# along with this program.  If not, see http://www.sun.com/cddl/cddl.html
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-# 2023 http://www.bananas-playground.net
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+# 2023 http://www.bananas-playground.net
 # More information and resources can be found here
 # https://www.bananas-playground.net/2023/05/db-delay-notify/
 
